@@ -1,0 +1,157 @@
+---
+interface Props {
+  title?: string
+}
+
+const { title = "Nous contacter" } = Astro.props
+
+// Email de destination pour FormSubmit
+const formEmail = "contact@wepe.fr"
+---
+
+<form class="space-y-6" action={`https://formsubmit.co/${formEmail}`} method="POST" data-contact-form>
+  <!-- FormSubmit Configuration -->
+  <input type="hidden" name="_subject" value="Nouveau message depuis wepe.fr" />
+  <input type="hidden" name="_captcha" value="true" />
+  <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_next" value="https://wepe.fr/contact?success=true" />
+
+  <!-- Honeypot anti-spam (champ caché pour les bots) -->
+  <input type="text" name="_honey" style="display:none" />
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div>
+      <label for="firstName" class="block text-sm font-medium text-wepe-black mb-2">
+        Prénom <span class="text-wepe-red">*</span>
+      </label>
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        required
+        autocomplete="given-name"
+        class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors"
+        placeholder="Votre prénom"
+      />
+    </div>
+
+    <div>
+      <label for="lastName" class="block text-sm font-medium text-wepe-black mb-2">
+        Nom <span class="text-wepe-red">*</span>
+      </label>
+      <input
+        type="text"
+        id="lastName"
+        name="lastName"
+        required
+        autocomplete="family-name"
+        class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors"
+        placeholder="Votre nom"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="email" class="block text-sm font-medium text-wepe-black mb-2">
+      Email <span class="text-wepe-red">*</span>
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      autocomplete="email"
+      class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors"
+      placeholder="votre@email.com"
+    />
+  </div>
+
+  <div>
+    <label for="company" class="block text-sm font-medium text-wepe-black mb-2">
+      Entreprise
+    </label>
+    <input
+      type="text"
+      id="company"
+      name="company"
+      autocomplete="organization"
+      class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors"
+      placeholder="Nom de votre entreprise"
+    />
+  </div>
+
+  <div>
+    <label for="subject" class="block text-sm font-medium text-wepe-black mb-2">
+      Objet <span class="text-wepe-red">*</span>
+    </label>
+    <select
+      id="subject"
+      name="subject"
+      required
+      class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors bg-wepe-white"
+    >
+      <option value="">Sélectionnez un objet</option>
+      <option value="partenariat">Proposition de partenariat</option>
+      <option value="investissement">Opportunité d'investissement</option>
+      <option value="emploi">Candidature / Emploi</option>
+      <option value="presse">Demande presse</option>
+      <option value="autre">Autre demande</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="message" class="block text-sm font-medium text-wepe-black mb-2">
+      Message <span class="text-wepe-red">*</span>
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      required
+      rows="5"
+      class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors resize-none"
+      placeholder="Décrivez votre demande..."
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="howDidYouHear" class="block text-sm font-medium text-wepe-black mb-2">
+      Comment nous avez-vous connu ?
+    </label>
+    <select
+      id="howDidYouHear"
+      name="howDidYouHear"
+      class="w-full px-4 py-3 border border-wepe-gray/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-wepe-red focus:border-transparent transition-colors bg-wepe-white"
+    >
+      <option value="">Sélectionnez une option</option>
+      <option value="reseaux-sociaux">Réseaux sociaux</option>
+      <option value="site-web">Site web / Recherche Google</option>
+      <option value="bouche-a-oreille">Bouche-à-oreille</option>
+      <option value="flyers">Flyers / Affiches</option>
+      <option value="carte-visite">Carte de visite</option>
+      <option value="evenement">Événement / Salon</option>
+      <option value="presse">Presse / Média</option>
+      <option value="autre">Autre</option>
+    </select>
+  </div>
+
+  <div class="flex items-start gap-3">
+    <input
+      type="checkbox"
+      id="consent"
+      name="consent"
+      required
+      class="mt-1 w-4 h-4 text-wepe-red border-wepe-gray/30 rounded focus:ring-wepe-red"
+    />
+    <label for="consent" class="text-sm text-wepe-gray-dark">
+      J'accepte que mes données soient traitées conformément à la
+      <a href="/confidentialite" class="text-wepe-red hover:underline">politique de confidentialité</a>
+      de WEPE. <span class="text-wepe-red">*</span>
+    </label>
+  </div>
+
+  <button type="submit" class="btn-primary w-full md:w-auto">
+    Envoyer le message
+    <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+    </svg>
+  </button>
+</form>

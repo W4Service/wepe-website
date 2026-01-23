@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string
+  subtitle?: string
+  description: string
+  primaryCTA?: {
+    text: string
+    href: string
+  }
+  secondaryCTA?: {
+    text: string
+    href: string
+  }
+  centered?: boolean
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  primaryCTA,
+  secondaryCTA,
+  centered = true
+} = Astro.props
+---
+
+<section class="relative overflow-hidden bg-wepe-white">
+  <!-- Subtle background pattern -->
+  <div class="absolute inset-0 bg-gradient-to-b from-wepe-gray-light/50 to-transparent pointer-events-none"></div>
+
+  <div class="container-wepe relative">
+    <div class={`py-20 md:py-28 lg:py-36 ${centered ? 'text-center max-w-4xl mx-auto' : ''}`}>
+      {subtitle && (
+        <p class="text-wepe-red font-medium text-sm uppercase tracking-wider mb-4">
+          {subtitle}
+        </p>
+      )}
+
+      <h1 class="text-balance text-wepe-black mb-6">
+        {title}
+      </h1>
+
+      <p class={`text-lg md:text-xl text-wepe-gray-dark leading-relaxed mb-10 ${centered ? 'max-w-2xl mx-auto' : 'max-w-2xl'}`}>
+        {description}
+      </p>
+
+      {(primaryCTA || secondaryCTA) && (
+        <div class={`flex flex-col sm:flex-row gap-4 ${centered ? 'justify-center' : ''}`}>
+          {primaryCTA && (
+            <a href={primaryCTA.href} class="btn-primary">
+              {primaryCTA.text}
+              <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </a>
+          )}
+          {secondaryCTA && (
+            <a href={secondaryCTA.href} class="btn-secondary">
+              {secondaryCTA.text}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <!-- Decorative element -->
+  <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-wepe-gray to-transparent"></div>
+</section>

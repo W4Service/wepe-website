@@ -1,0 +1,106 @@
+---
+const currentYear = new Date().getFullYear()
+
+const footerLinks = {
+  groupe: [
+    { name: 'Le Groupe', href: '/groupe' },
+    { name: 'Nos Pôles', href: '/poles' },
+    { name: 'Contact', href: '/contact' },
+  ],
+  poles: [
+    { name: 'Wuilhome', href: '/poles#wuilhome' },
+    { name: 'W4S', href: '/poles#w4s' },
+    { name: 'Le Rebond', href: '/poles#le-rebond' },
+  ],
+  legal: [
+    { name: 'Mentions légales', href: '/mentions-legales' },
+    { name: 'Politique de confidentialité', href: '/confidentialite' },
+  ],
+}
+---
+
+<footer class="bg-wepe-black text-wepe-white" role="contentinfo">
+  <div class="container-wepe py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <a href="/" class="inline-block mb-6" aria-label="WEPE - Accueil">
+          <img
+            src="/images/logos/logo-wepe.webp"
+            alt="WEPE - Holding premium"
+            width="120"
+            height="120"
+            class="h-20 w-auto"
+          />
+        </a>
+        <p class="text-wepe-gray text-sm leading-relaxed">
+          Holding premium structurant un écosystème de services innovants et complémentaires.
+        </p>
+      </div>
+
+      <!-- Le Groupe -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4">Le Groupe</h3>
+        <ul class="space-y-3">
+          {footerLinks.groupe.map((link) => (
+            <li>
+              <a href={link.href} class="text-wepe-gray hover:text-wepe-white text-sm transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Nos Pôles -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4">Nos Pôles</h3>
+        <ul class="space-y-3">
+          {footerLinks.poles.map((link) => (
+            <li>
+              <a href={link.href} class="text-wepe-gray hover:text-wepe-white text-sm transition-colors">
+                {link.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wider mb-4">Contact</h3>
+        <ul class="space-y-3 text-sm text-wepe-gray">
+          <li>
+            <a href="tel:+33344261298" class="hover:text-wepe-white transition-colors">
+              +33 3 44 26 12 98
+            </a>
+          </li>
+          <li>
+            <a href="mailto:contact@wepe.fr" class="hover:text-wepe-white transition-colors">
+              contact@wepe.fr
+            </a>
+          </li>
+          <li>
+            <span>66 Avenue des Champs-Élysées<br />75008 Paris</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="mt-12 pt-8 border-t border-wepe-gray-dark/30">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-wepe-gray text-sm">
+          &copy; {currentYear} WEPE. Tous droits réservés.
+        </p>
+        <div class="flex gap-6">
+          {footerLinks.legal.map((link) => (
+            <a href={link.href} class="text-wepe-gray hover:text-wepe-white text-sm transition-colors">
+              {link.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,126 @@
+---
+import '../styles/global.css'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+
+interface Props {
+  title: string
+  description: string
+  canonicalURL?: string
+  ogImage?: string
+}
+
+const {
+  title,
+  description,
+  canonicalURL = Astro.url.href,
+  ogImage = '/og-image.jpg'
+} = Astro.props
+
+const siteTitle = `${title} | WEPE`
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="WEPE" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+
+    <title>{siteTitle}</title>
+
+    <!-- Schema.org Organization + LocalBusiness -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["Organization", "LocalBusiness"],
+      "name": "WEPE",
+      "description": "Holding premium structurant un écosystème de services : conciergerie, mise en relation et sport.",
+      "url": "https://wepe.fr",
+      "logo": "https://wepe.fr/images/logos/logo-wepe.webp",
+      "image": "https://wepe.fr/images/logos/logo-wepe.webp",
+      "telephone": "+33344261298",
+      "email": "contact@wepe.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "66 Avenue des Champs-Élysées",
+        "addressLocality": "Paris",
+        "postalCode": "75008",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.8716,
+        "longitude": 2.3026
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+33344261298",
+        "email": "contact@wepe.fr",
+        "availableLanguage": "French"
+      },
+      "subOrganization": [
+        {
+          "@type": "Organization",
+          "name": "Wuilhome",
+          "description": "Service de conciergerie premium",
+          "url": "https://www.wuilhome.com"
+        },
+        {
+          "@type": "Organization",
+          "name": "W4S",
+          "description": "Services et mise en relation professionnelle",
+          "url": "https://www.w4service.fr"
+        },
+        {
+          "@type": "Organization",
+          "name": "Le Rebond",
+          "description": "Complexe sportif",
+          "url": "https://www.le-rebond.fr"
+        }
+      ]
+    })} />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <Header />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

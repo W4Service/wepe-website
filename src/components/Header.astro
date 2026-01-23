@@ -1,0 +1,82 @@
+---
+const navigation = [
+  { name: 'Le Groupe', href: '/groupe' },
+  { name: 'Nos Pôles', href: '/poles' },
+  { name: 'Contact', href: '/contact' },
+]
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-wepe-white/95 backdrop-blur-sm border-b border-wepe-gray/20">
+  <nav class="container-wepe" aria-label="Navigation principale">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center" aria-label="WEPE - Accueil">
+        <img
+          src="/images/logos/logo-wepe.webp"
+          alt="WEPE - Holding premium"
+          width="60"
+          height="60"
+          class="h-14 w-auto"
+        />
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class="text-sm font-medium text-wepe-gray-dark hover:text-wepe-red transition-colors"
+          >
+            {item.name}
+          </a>
+        ))}
+        <a href="/contact" class="btn-primary">
+          Nous contacter
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        type="button"
+        class="md:hidden p-2 text-wepe-gray-dark hover:text-wepe-red"
+        aria-label="Ouvrir le menu"
+        aria-expanded="false"
+        data-mobile-menu-toggle
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="hidden md:hidden pb-4" data-mobile-menu>
+      <div class="flex flex-col gap-4 pt-4 border-t border-wepe-gray/20">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class="text-base font-medium text-wepe-gray-dark hover:text-wepe-red transition-colors py-2"
+          >
+            {item.name}
+          </a>
+        ))}
+        <a href="/contact" class="btn-primary w-full text-center mt-2">
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="h-20"></div>
+
+<script>
+  const toggle = document.querySelector('[data-mobile-menu-toggle]')
+  const menu = document.querySelector('[data-mobile-menu]')
+
+  toggle?.addEventListener('click', () => {
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true'
+    toggle.setAttribute('aria-expanded', (!isExpanded).toString())
+    menu?.classList.toggle('hidden')
+  })
+</script>

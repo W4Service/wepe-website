@@ -1,0 +1,68 @@
+---
+interface Props {
+  title?: string
+  subtitle?: string
+  description?: string
+  background?: 'white' | 'light' | 'dark'
+  centered?: boolean
+  id?: string
+}
+
+const {
+  title,
+  subtitle,
+  description,
+  background = 'white',
+  centered = true,
+  id
+} = Astro.props
+
+const bgClasses = {
+  white: 'bg-wepe-white',
+  light: 'bg-wepe-gray-light',
+  dark: 'bg-wepe-black text-wepe-white'
+}
+
+const textClasses = {
+  white: 'text-wepe-black',
+  light: 'text-wepe-black',
+  dark: 'text-wepe-white'
+}
+
+const subtitleClasses = {
+  white: 'text-wepe-red',
+  light: 'text-wepe-red',
+  dark: 'text-wepe-red-light'
+}
+
+const descClasses = {
+  white: 'text-wepe-gray-dark',
+  light: 'text-wepe-gray-dark',
+  dark: 'text-wepe-gray'
+}
+---
+
+<section id={id} class={`section-padding ${bgClasses[background]}`}>
+  <div class="container-wepe">
+    {(title || subtitle || description) && (
+      <div class={`mb-12 md:mb-16 ${centered ? 'text-center max-w-3xl mx-auto' : ''}`}>
+        {subtitle && (
+          <p class={`font-medium text-sm uppercase tracking-wider mb-4 ${subtitleClasses[background]}`}>
+            {subtitle}
+          </p>
+        )}
+        {title && (
+          <h2 class={`text-balance mb-4 ${textClasses[background]}`}>
+            {title}
+          </h2>
+        )}
+        {description && (
+          <p class={`text-lg leading-relaxed ${descClasses[background]}`}>
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>

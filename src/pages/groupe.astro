@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import Card from '../components/Card.astro'
+
+const missions = [
+  {
+    title: 'Stratégie globale',
+    description: 'Définir et piloter la vision à long terme du groupe, en identifiant les opportunités de croissance et de diversification.',
+    icon: 'diamond'
+  },
+  {
+    title: 'Gouvernance',
+    description: 'Assurer une gouvernance rigoureuse et transparente, garantissant la conformité et l\'éthique dans toutes nos opérations.',
+    icon: 'hexagon'
+  },
+  {
+    title: 'Cohérence financière',
+    description: 'Optimiser la structure financière du groupe et sécuriser les ressources nécessaires au développement de chaque pôle.',
+    icon: 'circle'
+  },
+  {
+    title: 'Harmonisation',
+    description: 'Standardiser les processus, outils et méthodes pour maximiser les synergies entre nos différentes entités.',
+    icon: 'square'
+  }
+]
+
+const pillars = [
+  {
+    title: 'Direction générale',
+    description: 'Pilotage stratégique et coordination des activités du groupe.'
+  },
+  {
+    title: 'Finance & Juridique',
+    description: 'Gestion financière, conformité réglementaire et sécurisation juridique.'
+  },
+  {
+    title: 'Développement',
+    description: 'Identification et concrétisation des opportunités de croissance.'
+  },
+  {
+    title: 'Excellence opérationnelle',
+    description: 'Optimisation des processus et amélioration continue.'
+  }
+]
+---
+
+<Layout
+  title="Le Groupe"
+  description="Découvrez WEPE, holding française structurant un écosystème de services complémentaires. Notre mission : stratégie, gouvernance et développement durable."
+>
+  <!-- Hero -->
+  <Hero
+    subtitle="Le Groupe WEPE"
+    title="Une holding au service de l'excellence"
+    description="WEPE structure et développe un écosystème de services complémentaires. Notre mission : créer de la valeur durable à travers une gouvernance rigoureuse, une vision stratégique partagée et une exigence permanente de qualité."
+    primaryCTA={{ text: 'Découvrir nos pôles', href: '/poles' }}
+    secondaryCTA={{ text: 'Nous contacter', href: '/contact' }}
+  />
+
+  <!-- Notre Mission -->
+  <Section
+    subtitle="Notre mission"
+    title="Structurer, développer, pérenniser"
+    description="WEPE joue le rôle de holding mère, assurant la cohérence stratégique, financière et organisationnelle de l'ensemble de ses filiales."
+    background="light"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {missions.map((mission) => (
+        <Card
+          title={mission.title}
+          description={mission.description}
+          icon={mission.icon}
+          variant="elevated"
+        />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Notre Vision -->
+  <Section
+    subtitle="Notre vision"
+    title="Bâtir un groupe solide et pérenne"
+  >
+    <div class="max-w-4xl mx-auto">
+      <div class="prose prose-lg mx-auto text-center">
+        <p class="text-xl text-wepe-gray-dark leading-relaxed mb-8">
+          Notre ambition est de construire un groupe entrepreneurial solide, capable de créer de la valeur durable pour l'ensemble de ses parties prenantes : collaborateurs, clients, partenaires et actionnaires.
+        </p>
+        <p class="text-lg text-wepe-gray-dark leading-relaxed">
+          Cette vision se traduit par une approche structurée du développement, où chaque décision est guidée par nos valeurs fondamentales : excellence, cohérence, innovation et intégrité. Nous croyons qu'un groupe fort se construit sur des bases solides et une gouvernance exemplaire.
+        </p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- Piliers de gouvernance -->
+  <Section
+    subtitle="Notre organisation"
+    title="Les piliers de la gouvernance WEPE"
+    description="Une structure claire et des responsabilités définies pour une gestion optimale du groupe."
+    background="dark"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {pillars.map((pillar, index) => (
+        <div class="text-center p-6">
+          <div class="w-16 h-16 bg-wepe-red rounded-full flex items-center justify-center mx-auto mb-6">
+            <span class="text-wepe-white font-bold text-xl">{index + 1}</span>
+          </div>
+          <h3 class="text-xl font-semibold text-wepe-white mb-3">{pillar.title}</h3>
+          <p class="text-wepe-gray">{pillar.description}</p>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <!-- Notre approche -->
+  <Section
+    subtitle="Notre approche"
+    title="Une méthode éprouvée"
+    background="light"
+  >
+    <div class="max-w-4xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span class="text-wepe-red text-2xl font-bold">1</span>
+          </div>
+          <h3 class="text-lg font-semibold text-wepe-black mb-2">Analyser</h3>
+          <p class="text-wepe-gray-dark text-sm">Comprendre en profondeur les enjeux et opportunités de chaque activité.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span class="text-wepe-red text-2xl font-bold">2</span>
+          </div>
+          <h3 class="text-lg font-semibold text-wepe-black mb-2">Structurer</h3>
+          <p class="text-wepe-gray-dark text-sm">Mettre en place les processus et outils adaptés à chaque contexte.</p>
+        </div>
+        <div class="text-center">
+          <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <span class="text-wepe-red text-2xl font-bold">3</span>
+          </div>
+          <h3 class="text-lg font-semibold text-wepe-black mb-2">Développer</h3>
+          <p class="text-wepe-gray-dark text-sm">Accompagner la croissance tout en maintenant l'excellence opérationnelle.</p>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <!-- CTA -->
+  <Section>
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="mb-4">Intéressé par notre groupe ?</h2>
+      <p class="text-lg text-wepe-gray-dark mb-8">
+        Que vous soyez investisseur, partenaire potentiel ou simplement curieux d'en savoir plus, notre équipe est à votre disposition.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-primary">
+          Nous contacter
+        </a>
+        <a href="/poles" class="btn-secondary">
+          Découvrir nos pôles
+        </a>
+      </div>
+    </div>
+  </Section>
+</Layout>

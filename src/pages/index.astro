@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import Card from '../components/Card.astro'
+import FAQ from '../components/FAQ.astro'
+
+const values = [
+  {
+    title: 'Excellence',
+    description: 'Nous visons l\'excellence dans chaque initiative, en appliquant des standards élevés à toutes nos activités.',
+    icon: 'diamond'
+  },
+  {
+    title: 'Cohérence',
+    description: 'Une vision unifiée et des processus harmonisés garantissent la synergie entre nos différents pôles.',
+    icon: 'hexagon'
+  },
+  {
+    title: 'Innovation',
+    description: 'Nous anticipons les évolutions du marché pour proposer des solutions toujours plus pertinentes.',
+    icon: 'circle'
+  },
+  {
+    title: 'Intégrité',
+    description: 'La transparence et l\'éthique guident chacune de nos décisions stratégiques et opérationnelles.',
+    icon: 'square'
+  }
+]
+
+const poles = [
+  {
+    title: 'Wuilhome',
+    description: 'Services de conciergerie premium pour une gestion locative d\'exception.',
+    href: '/poles#wuilhome',
+    externalLink: 'https://www.wuilhome.com'
+  },
+  {
+    title: 'W4S',
+    description: 'Plateforme de mise en relation et services B2B personnalisés.',
+    href: '/poles#w4s',
+    externalLink: 'https://www.w4service.fr'
+  },
+  {
+    title: 'Le Rebond',
+    description: 'Complexe sportif moderne dédié au bien-être et à la performance.',
+    href: '/poles#le-rebond',
+    externalLink: 'https://www.le-rebond.fr'
+  }
+]
+
+const faqItems = [
+  {
+    question: 'Qu\'est-ce que WEPE ?',
+    answer: 'WEPE est une holding française qui structure et développe un écosystème de services complémentaires. Notre groupe réunit trois pôles d\'activité : Wuilhome (conciergerie), W4S (services et mise en relation) et Le Rebond (complexe sportif).'
+  },
+  {
+    question: 'Quels services propose le groupe WEPE ?',
+    answer: 'Le groupe WEPE propose des services diversifiés à travers ses filiales : gestion locative et conciergerie avec Wuilhome, mise en relation professionnelle et services B2B avec W4S, et activités sportives et bien-être avec Le Rebond.'
+  },
+  {
+    question: 'Comment contacter WEPE pour un partenariat ?',
+    answer: 'Pour toute proposition de partenariat, vous pouvez nous contacter via notre formulaire en ligne sur la page Contact ou directement par email à contact@wepe.fr. Notre équipe étudie chaque proposition avec attention.'
+  }
+]
+---
+
+<Layout
+  title="Accueil"
+  description="WEPE, holding premium structurant un écosystème de services innovants : conciergerie, mise en relation et sport. Découvrez notre groupe et nos filiales."
+>
+  <!-- Hero -->
+  <Hero
+    subtitle="Groupe WEPE"
+    title="Structurer l'excellence, développer l'avenir"
+    description="WEPE est une holding française qui fédère et développe un écosystème de services complémentaires. Notre mission : créer de la valeur durable à travers une gouvernance rigoureuse et une vision stratégique commune."
+    primaryCTA={{ text: 'Découvrir le groupe', href: '/groupe' }}
+    secondaryCTA={{ text: 'Nos pôles d\'activité', href: '/poles' }}
+  />
+
+  <!-- Nos Valeurs -->
+  <Section
+    subtitle="Notre ADN"
+    title="Des valeurs qui guident notre action"
+    description="Chaque décision, chaque projet est porté par des principes fondamentaux qui définissent l'identité du groupe WEPE."
+    background="light"
+  >
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {values.map((value) => (
+        <Card
+          title={value.title}
+          description={value.description}
+          icon={value.icon}
+          variant="elevated"
+        />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Nos Pôles -->
+  <Section
+    subtitle="Notre écosystème"
+    title="Trois pôles, une vision"
+    description="Le groupe WEPE réunit des activités complémentaires qui partagent une même exigence de qualité et d'innovation."
+  >
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {poles.map((pole) => (
+        <Card
+          title={pole.title}
+          description={pole.description}
+          href={pole.href}
+          externalLink={pole.externalLink}
+          variant="bordered"
+        />
+      ))}
+    </div>
+  </Section>
+
+  <!-- Chiffres clés -->
+  <Section background="dark">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <p class="text-4xl md:text-5xl font-bold text-wepe-white mb-2">3</p>
+        <p class="text-wepe-gray text-sm uppercase tracking-wider">Pôles d'activité</p>
+      </div>
+      <div>
+        <p class="text-4xl md:text-5xl font-bold text-wepe-white mb-2">8+</p>
+        <p class="text-wepe-gray text-sm uppercase tracking-wider">Collaborateurs</p>
+      </div>
+      <div>
+        <p class="text-4xl md:text-5xl font-bold text-wepe-white mb-2">7</p>
+        <p class="text-wepe-gray text-sm uppercase tracking-wider">Années d'expérience</p>
+      </div>
+      <div>
+        <p class="text-4xl md:text-5xl font-bold text-wepe-white mb-2">30+</p>
+        <p class="text-wepe-gray text-sm uppercase tracking-wider">Clients satisfaits</p>
+      </div>
+    </div>
+  </Section>
+
+  <!-- FAQ -->
+  <Section
+    subtitle="Questions fréquentes"
+    title="Mieux comprendre WEPE"
+    background="light"
+  >
+    <div class="max-w-3xl mx-auto">
+      <FAQ items={faqItems} />
+    </div>
+  </Section>
+
+  <!-- CTA Final -->
+  <Section>
+    <div class="text-center max-w-2xl mx-auto">
+      <h2 class="mb-4">Construisons ensemble</h2>
+      <p class="text-lg text-wepe-gray-dark mb-8">
+        Vous souhaitez en savoir plus sur le groupe WEPE ou explorer des opportunités de collaboration ? Notre équipe est à votre écoute.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact" class="btn-primary">
+          Nous contacter
+        </a>
+        <a href="/groupe" class="btn-secondary">
+          En savoir plus
+        </a>
+      </div>
+    </div>
+  </Section>
+</Layout>

@@ -8,22 +8,22 @@ import FAQ from '../components/FAQ.astro'
 const values = [
   {
     title: 'Excellence',
-    description: 'Nous visons l\'excellence dans chaque initiative, en appliquant des standards élevés à toutes nos activités.',
+    description: 'Nous visons l\'excellence dans chaque initiative, en appliquant des standards élevés à toutes nos activités',
     icon: 'diamond'
   },
   {
     title: 'Cohérence',
-    description: 'Une vision unifiée et des processus harmonisés garantissent la synergie entre nos différents pôles.',
+    description: 'Une vision unifiée et des processus harmonisés garantissent la synergie entre nos différents pôles',
     icon: 'hexagon'
   },
   {
     title: 'Innovation',
-    description: 'Nous anticipons les évolutions du marché pour proposer des solutions toujours plus pertinentes.',
+    description: 'Nous anticipons les évolutions du marché pour proposer des solutions toujours plus pertinentes',
     icon: 'circle'
   },
   {
     title: 'Intégrité',
-    description: 'La transparence et l\'éthique guident chacune de nos décisions stratégiques et opérationnelles.',
+    description: 'La transparence et l\'éthique guident chacune de nos décisions stratégiques et opérationnelles',
     icon: 'square'
   }
 ]
@@ -31,36 +31,45 @@ const values = [
 const poles = [
   {
     title: 'Wuilhome',
-    description: 'Services de conciergerie premium pour une gestion locative d\'exception.',
+    tagline: 'Conciergerie',
+    description: 'Services de conciergerie pour une gestion locative d\'exception',
+    services: ['Gestion locative', 'Accueil voyageurs', 'Entretien', 'Maintenance'],
     href: '/poles#wuilhome',
-    externalLink: 'https://www.wuilhome.com'
+    externalLink: 'https://www.wuilhome.com',
+    logo: '/images/logos/logo-wuilhome.webp'
   },
   {
     title: 'W4S',
-    description: 'Plateforme de mise en relation et services B2B personnalisés.',
+    tagline: 'Services & Mise en relation',
+    description: 'Plateforme de mise en relation et services B2B personnalisés',
+    services: ['Mise en relation', 'Services B2B', 'Accompagnement', 'Support dédié'],
     href: '/poles#w4s',
-    externalLink: 'https://www.w4service.fr'
+    externalLink: 'https://www.w4service.fr',
+    logo: '/images/logos/logo-w4s.webp'
   },
   {
     title: 'Le Rebond',
-    description: 'Complexe sportif moderne dédié au bien-être et à la performance.',
+    tagline: 'Complexe Sportif',
+    description: 'Complexe sportif moderne dédié au bien-être et à la performance',
+    services: ['Terrains multisports', 'Coaching', 'Cours collectifs', 'Événements'],
     href: '/poles#le-rebond',
-    externalLink: 'https://www.le-rebond.fr'
+    externalLink: 'https://www.le-rebond.fr',
+    logo: null
   }
 ]
 
 const faqItems = [
   {
     question: 'Qu\'est-ce que WEPE ?',
-    answer: 'WEPE est une holding française qui structure et développe un écosystème de services complémentaires. Notre groupe réunit trois pôles d\'activité : Wuilhome (conciergerie), W4S (services et mise en relation) et Le Rebond (complexe sportif).'
+    answer: 'WEPE est une holding française qui structure et développe un écosystème de services complémentaires. Notre groupe réunit trois pôles d\'activité : Wuilhome (conciergerie), W4S (services et mise en relation) et Le Rebond (complexe sportif)'
   },
   {
     question: 'Quels services propose le groupe WEPE ?',
-    answer: 'Le groupe WEPE propose des services diversifiés à travers ses filiales : gestion locative et conciergerie avec Wuilhome, mise en relation professionnelle et services B2B avec W4S, et activités sportives et bien-être avec Le Rebond.'
+    answer: 'Le groupe WEPE propose des services diversifiés à travers ses filiales : gestion locative et conciergerie avec Wuilhome, mise en relation professionnelle et services B2B avec W4S, et activités sportives et bien-être avec Le Rebond'
   },
   {
     question: 'Comment contacter WEPE pour un partenariat ?',
-    answer: 'Pour toute proposition de partenariat, vous pouvez nous contacter via notre formulaire en ligne sur la page Contact ou directement par email à contact@wepe.fr. Notre équipe étudie chaque proposition avec attention.'
+    answer: 'Pour toute proposition de partenariat, vous pouvez nous contacter via notre formulaire en ligne sur la page Contact ou directement par email à contact@wepe.fr. Notre équipe étudie chaque proposition avec attention'
   }
 ]
 ---
@@ -101,17 +110,82 @@ const faqItems = [
   <Section
     subtitle="Notre écosystème"
     title="Trois pôles, une vision"
-    description="Le groupe WEPE réunit des activités complémentaires qui partagent une même exigence de qualité et d'innovation."
+    description="Le groupe WEPE réunit des activités complémentaires qui partagent une même exigence de qualité et d'innovation"
   >
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {poles.map((pole) => (
-        <Card
-          title={pole.title}
-          description={pole.description}
+    <div class="poles-container flex flex-col md:flex-row gap-4">
+      {poles.map((pole, index) => (
+        <a
           href={pole.href}
-          externalLink={pole.externalLink}
-          variant="bordered"
-        />
+          class="pole-card group relative flex-1 bg-wepe-white border border-wepe-gray/20 rounded-xl overflow-hidden transition-all duration-500 ease-out hover:flex-[2] min-h-[280px] md:min-h-[400px]"
+          data-pole-index={index}
+        >
+          <!-- Accent bar -->
+          <div class="absolute top-0 left-0 right-0 h-1 bg-wepe-red opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+          <div class="p-6 md:p-8 h-full flex flex-col">
+            <!-- Header avec logo -->
+            <div class="flex items-start justify-between gap-4 mb-4">
+              <div>
+                <p class="text-wepe-red text-xs font-medium uppercase tracking-wider mb-1 opacity-70 group-hover:opacity-100 transition-opacity">
+                  {pole.tagline}
+                </p>
+                <h3 class="text-xl md:text-2xl font-semibold text-wepe-black">
+                  {pole.title}
+                </h3>
+              </div>
+              {pole.logo && (
+                <img
+                  src={pole.logo}
+                  alt={`Logo ${pole.title}`}
+                  class={`object-contain flex-shrink-0 opacity-50 group-hover:opacity-100 transition-opacity ${pole.logo.includes('w4s') ? 'h-10 md:h-12' : 'h-8 md:h-10'}`}
+                />
+              )}
+            </div>
+
+            <!-- Description (visible au survol) -->
+            <p class="text-wepe-gray-dark text-sm leading-relaxed mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+              {pole.description}
+            </p>
+
+            <!-- Services (visible au survol) -->
+            <div class="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-150">
+              <ul class="grid grid-cols-2 gap-2">
+                {pole.services.map((service) => (
+                  <li class="flex items-center gap-2 text-xs text-wepe-gray-dark">
+                    <svg class="w-3 h-3 text-wepe-red flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-6 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-200">
+              <span class="flex items-center text-wepe-red font-medium text-sm">
+                En savoir plus
+                <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </span>
+              {pole.externalLink && (
+                <a
+                  href={pole.externalLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center text-wepe-gray-dark hover:text-wepe-red text-xs transition-colors"
+                  onclick="event.stopPropagation();"
+                >
+                  Site web
+                  <svg class="w-3 h-3 ml-1" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                  </svg>
+                </a>
+              )}
+            </div>
+          </div>
+        </a>
       ))}
     </div>
   </Section>

@@ -7,22 +7,22 @@ import Card from '../components/Card.astro'
 const missions = [
   {
     title: 'Stratégie globale',
-    description: 'Définir et piloter la vision à long terme du groupe, en identifiant les opportunités de croissance et de diversification.',
+    description: 'Définir et piloter la vision à long terme du groupe, en identifiant les opportunités de croissance et de diversification',
     icon: 'diamond'
   },
   {
     title: 'Gouvernance',
-    description: 'Assurer une gouvernance rigoureuse et transparente, garantissant la conformité et l\'éthique dans toutes nos opérations.',
+    description: 'Assurer une gouvernance rigoureuse et transparente, garantissant la conformité et l\'éthique dans toutes nos opérations',
     icon: 'hexagon'
   },
   {
     title: 'Cohérence financière',
-    description: 'Optimiser la structure financière du groupe et sécuriser les ressources nécessaires au développement de chaque pôle.',
+    description: 'Optimiser la structure financière du groupe et sécuriser les ressources nécessaires au développement de chaque pôle',
     icon: 'circle'
   },
   {
     title: 'Harmonisation',
-    description: 'Standardiser les processus, outils et méthodes pour maximiser les synergies entre nos différentes entités.',
+    description: 'Standardiser les processus, outils et méthodes pour maximiser les synergies entre nos différentes entités',
     icon: 'square'
   }
 ]
@@ -30,19 +30,50 @@ const missions = [
 const pillars = [
   {
     title: 'Direction générale',
-    description: 'Pilotage stratégique et coordination des activités du groupe.'
+    description: 'Pilotage stratégique et coordination des activités du groupe'
   },
   {
     title: 'Finance & Juridique',
-    description: 'Gestion financière, conformité réglementaire et sécurisation juridique.'
+    description: 'Gestion financière, conformité réglementaire et sécurisation juridique'
   },
   {
     title: 'Développement',
-    description: 'Identification et concrétisation des opportunités de croissance.'
+    description: 'Identification et concrétisation des opportunités de croissance'
   },
   {
     title: 'Excellence opérationnelle',
-    description: 'Optimisation des processus et amélioration continue.'
+    description: 'Optimisation des processus et amélioration continue'
+  }
+]
+
+const founders = [
+  {
+    name: 'Jean-Baptiste Esponde',
+    role: 'Président',
+    subtitle: 'Responsable Juridique, RH et Partenariats',
+    description: 'Ingénieur (Bac+5) avec 4 ans d\'expérience en gestion commerciale. 15 ans d\'expérience dans le football dont 8 ans en arbitrage de haut niveau (Ligue 2)',
+    image: '/images/team/jb-girardin.webp'
+  },
+  {
+    name: 'Benjamin Wuilmot',
+    role: 'Directeur Général',
+    subtitle: 'Responsable Marketing, Finance et Stratégie',
+    description: 'École de commerce - Spécialisation Finance, Conseil et Audit (Bac+5). Expérience dans la création et gestion d\'entreprise (+3 ans) avec Wuilhome.com',
+    image: '/images/team/benjamin-taveneau.webp'
+  },
+  {
+    name: 'Damien Esponde',
+    role: 'Directeur Général',
+    subtitle: 'Gestion des opérations et développement commercial',
+    description: 'Master Commerce & Gestion (Bac+5). 2 ans d\'expérience en restauration et bar, 2 ans en vente commerciale. 15 ans d\'expérience dans le football',
+    image: '/images/team/damien-girardin.webp'
+  },
+  {
+    name: 'Gaël Poujol',
+    role: 'Directeur Général',
+    subtitle: 'Gestion opérationnelle et encadrement padel',
+    description: 'Ingénieur (Bac+5) avec 4 ans d\'expérience dans la restauration et gestion de bar. 15 ans de pratique en sports de raquettes à haut niveau',
+    image: '/images/team/gael-poujol.webp'
   }
 ]
 ---
@@ -55,16 +86,58 @@ const pillars = [
   <Hero
     subtitle="Le Groupe WEPE"
     title="Une holding au service de l'excellence"
-    description="WEPE structure et développe un écosystème de services complémentaires. Notre mission : créer de la valeur durable à travers une gouvernance rigoureuse, une vision stratégique partagée et une exigence permanente de qualité."
+    description="WEPE structure et développe un écosystème de services complémentaires. Notre mission : créer de la valeur durable à travers une gouvernance rigoureuse, une vision stratégique partagée et une exigence permanente de qualité"
     primaryCTA={{ text: 'Découvrir nos pôles', href: '/poles' }}
     secondaryCTA={{ text: 'Nous contacter', href: '/contact' }}
   />
+
+  <!-- Qui sommes-nous -->
+  <Section
+    subtitle="Qui sommes-nous"
+    title="Notre histoire"
+    background="light"
+  >
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-wepe-white p-8 md:p-12 rounded-xl border border-wepe-gray/20 mb-12">
+        <p class="text-xl text-wepe-gray-dark leading-relaxed mb-6 text-center">
+          <span class="text-wepe-red font-semibold">WEPE</span> est né en 2024 de la volonté de 4 amis entrepreneurs, unis par une même vision : structurer et développer un écosystème de services complémentaires
+        </p>
+        <p class="text-lg text-wepe-gray-dark leading-relaxed mb-6 text-center">
+          Partageant des valeurs communes d'excellence, de rigueur et d'innovation, ils ont décidé de regrouper leurs expertises au sein d'une holding capable de créer des synergies entre leurs différentes activités
+        </p>
+        <p class="text-lg text-wepe-gray-dark leading-relaxed text-center">
+          Aujourd'hui, WEPE fédère trois pôles d'activité distincts mais complémentaires : Wuilhome (conciergerie), W4S (services et mise en relation) et Le Rebond (complexe sportif). Ensemble, nous construisons un groupe solide et pérenne, au service de nos clients et partenaires
+        </p>
+      </div>
+
+      <!-- Fondateurs -->
+      <h3 class="text-2xl font-semibold text-wepe-black mb-8 text-center">Les fondateurs</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {founders.map((founder) => (
+          <div class="text-center bg-wepe-white p-6 rounded-xl border border-wepe-gray/10 hover:border-wepe-red/20 transition-colors">
+            <div class="relative mb-4 mx-auto w-24 h-24 md:w-28 md:h-28">
+              <img
+                src={founder.image}
+                alt={founder.name}
+                class="w-full h-full object-cover rounded-full border-3 border-wepe-red/20"
+                loading="lazy"
+              />
+            </div>
+            <h4 class="font-semibold text-wepe-black text-base">{founder.name}</h4>
+            <p class="text-wepe-red text-sm font-medium">{founder.role}</p>
+            <p class="text-wepe-gray-dark text-xs mt-1 mb-3">{founder.subtitle}</p>
+            <p class="text-wepe-gray-dark text-xs leading-relaxed">{founder.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
 
   <!-- Notre Mission -->
   <Section
     subtitle="Notre mission"
     title="Structurer, développer, pérenniser"
-    description="WEPE joue le rôle de holding mère, assurant la cohérence stratégique, financière et organisationnelle de l'ensemble de ses filiales."
+    description="WEPE joue le rôle de holding mère, assurant la cohérence stratégique, financière et organisationnelle de l'ensemble de ses filiales"
     background="light"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -87,10 +160,10 @@ const pillars = [
     <div class="max-w-4xl mx-auto">
       <div class="prose prose-lg mx-auto text-center">
         <p class="text-xl text-wepe-gray-dark leading-relaxed mb-8">
-          Notre ambition est de construire un groupe entrepreneurial solide, capable de créer de la valeur durable pour l'ensemble de ses parties prenantes : collaborateurs, clients, partenaires et actionnaires.
+          Notre ambition est de construire un groupe entrepreneurial solide, capable de créer de la valeur durable pour l'ensemble de ses parties prenantes : collaborateurs, clients, partenaires et actionnaires
         </p>
         <p class="text-lg text-wepe-gray-dark leading-relaxed">
-          Cette vision se traduit par une approche structurée du développement, où chaque décision est guidée par nos valeurs fondamentales : excellence, cohérence, innovation et intégrité. Nous croyons qu'un groupe fort se construit sur des bases solides et une gouvernance exemplaire.
+          Cette vision se traduit par une approche structurée du développement, où chaque décision est guidée par nos valeurs fondamentales : excellence, cohérence, innovation et intégrité. Nous croyons qu'un groupe fort se construit sur des bases solides et une gouvernance exemplaire
         </p>
       </div>
     </div>
@@ -100,7 +173,7 @@ const pillars = [
   <Section
     subtitle="Notre organisation"
     title="Les piliers de la gouvernance WEPE"
-    description="Une structure claire et des responsabilités définies pour une gestion optimale du groupe."
+    description="Une structure claire et des responsabilités définies pour une gestion optimale du groupe"
     background="dark"
   >
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -129,21 +202,21 @@ const pillars = [
             <span class="text-wepe-red text-2xl font-bold">1</span>
           </div>
           <h3 class="text-lg font-semibold text-wepe-black mb-2">Analyser</h3>
-          <p class="text-wepe-gray-dark text-sm">Comprendre en profondeur les enjeux et opportunités de chaque activité.</p>
+          <p class="text-wepe-gray-dark text-sm">Comprendre en profondeur les enjeux et opportunités de chaque activité</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mx-auto mb-4">
             <span class="text-wepe-red text-2xl font-bold">2</span>
           </div>
           <h3 class="text-lg font-semibold text-wepe-black mb-2">Structurer</h3>
-          <p class="text-wepe-gray-dark text-sm">Mettre en place les processus et outils adaptés à chaque contexte.</p>
+          <p class="text-wepe-gray-dark text-sm">Mettre en place les processus et outils adaptés à chaque contexte</p>
         </div>
         <div class="text-center">
           <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mx-auto mb-4">
             <span class="text-wepe-red text-2xl font-bold">3</span>
           </div>
           <h3 class="text-lg font-semibold text-wepe-black mb-2">Développer</h3>
-          <p class="text-wepe-gray-dark text-sm">Accompagner la croissance tout en maintenant l'excellence opérationnelle.</p>
+          <p class="text-wepe-gray-dark text-sm">Accompagner la croissance tout en maintenant l'excellence opérationnelle</p>
         </div>
       </div>
     </div>
@@ -154,7 +227,7 @@ const pillars = [
     <div class="text-center max-w-2xl mx-auto">
       <h2 class="mb-4">Intéressé par notre groupe ?</h2>
       <p class="text-lg text-wepe-gray-dark mb-8">
-        Que vous soyez investisseur, partenaire potentiel ou simplement curieux d'en savoir plus, notre équipe est à votre disposition.
+        Que vous soyez investisseur, partenaire potentiel ou simplement curieux d'en savoir plus, notre équipe est à votre disposition
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="/contact" class="btn-primary">

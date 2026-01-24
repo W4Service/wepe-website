@@ -1,0 +1,84 @@
+---
+// Bandeau de consentement cookies RGPD
+---
+
+<div
+  id="cookie-banner"
+  class="fixed bottom-0 left-0 right-0 z-50 transform translate-y-full transition-transform duration-500 ease-out"
+  role="dialog"
+  aria-labelledby="cookie-banner-title"
+  aria-describedby="cookie-banner-description"
+>
+  <div class="bg-wepe-black/95 backdrop-blur-sm border-t border-wepe-gray/20">
+    <div class="container-wepe py-4 md:py-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+        <!-- Texte -->
+        <div class="flex-1">
+          <h3 id="cookie-banner-title" class="text-wepe-white font-medium mb-1">
+            Gestion des cookies
+          </h3>
+          <p id="cookie-banner-description" class="text-wepe-gray text-sm leading-relaxed">
+            Nous utilisons des cookies pour améliorer votre expérience sur notre site.
+            En continuant votre navigation, vous acceptez notre
+            <a href="/confidentialite" class="text-wepe-red hover:underline">politique de confidentialité</a>
+          </p>
+        </div>
+
+        <!-- Boutons -->
+        <div class="flex flex-wrap gap-3">
+          <button
+            id="cookie-reject"
+            class="px-4 py-2 text-sm font-medium text-wepe-gray hover:text-wepe-white border border-wepe-gray/30 hover:border-wepe-gray/50 rounded-md transition-colors"
+          >
+            Refuser
+          </button>
+          <button
+            id="cookie-accept"
+            class="px-4 py-2 text-sm font-medium text-wepe-white bg-wepe-red hover:bg-wepe-red-dark rounded-md transition-colors"
+          >
+            Accepter
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const COOKIE_CONSENT_KEY = 'wepe_cookie_consent'
+  const banner = document.getElementById('cookie-banner')
+  const acceptBtn = document.getElementById('cookie-accept')
+  const rejectBtn = document.getElementById('cookie-reject')
+
+  // Vérifier si le consentement a déjà été donné
+  function checkConsent() {
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY)
+    if (!consent) {
+      // Afficher le bandeau après un court délai
+      setTimeout(() => {
+        banner?.classList.remove('translate-y-full')
+      }, 1000)
+    }
+  }
+
+  // Sauvegarder le consentement
+  function saveConsent(accepted: boolean) {
+    localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify({
+      accepted,
+      date: new Date().toISOString()
+    }))
+    hideBanner()
+  }
+
+  // Masquer le bandeau
+  function hideBanner() {
+    banner?.classList.add('translate-y-full')
+  }
+
+  // Event listeners
+  acceptBtn?.addEventListener('click', () => saveConsent(true))
+  rejectBtn?.addEventListener('click', () => saveConsent(false))
+
+  // Vérifier au chargement
+  checkConsent()
+</script>

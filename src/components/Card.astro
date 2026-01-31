@@ -30,10 +30,10 @@ const hoverClasses = href ? 'hover:shadow-xl hover:shadow-wepe-black/10 hover:-t
 
 <Tag
   href={href}
-  class={`group block p-8 rounded-lg transition-all duration-300 ${variantClasses[variant]} ${hoverClasses}`}
+  class={`group block p-8 rounded-lg transition-all duration-300 text-center ${variantClasses[variant]} ${hoverClasses}`}
 >
   {icon && (
-    <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mb-6">
+    <div class="w-12 h-12 bg-wepe-red/10 rounded-lg flex items-center justify-center mb-6 mx-auto">
       {icon === 'diamond' && (
         <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect
